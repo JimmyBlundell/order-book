@@ -10,7 +10,7 @@ It's a good idea to get the db set up first.
 * name: root
 * password: password
 * port: 3306
-* database: Create a schema titled 'rss-feed-db'
+* database: Create a schema titled 'order-book-db'
 * Done. The typeorm package will seed the database appropriately for you when you start up the backend server
 
 ### Installing
@@ -21,7 +21,7 @@ It's a good idea to get the db set up first.
   * For an all-in-one installation, run ``` npm run initialize ```
 * Otherwise
   * ``` npm install ``` in this folder
-  * ``` cd ../../backend && yarn ```
+  * ``` cd ../backend && yarn ```
 
 
 

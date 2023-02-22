@@ -1,6 +1,6 @@
 import {createConnection, getConnection} from 'typeorm';
+import { Trades } from './models/trades';
 import { User } from "./models/user"
-import { Rssfeed } from "./models/rssfeed";
 
 let dbConnection = null;
 async function connect() {
@@ -10,8 +10,8 @@ async function connect() {
         port: 3306,
         username: 'root',
         password: 'password',
-        database: 'rss-feed-db',
-        entities: [User, Rssfeed],
+        database: 'order-book-db',
+        entities: [User, Trades],
         synchronize: true,
         logging: true,
     });

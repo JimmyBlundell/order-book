@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.close = exports.initDb = void 0;
 const typeorm_1 = require("typeorm");
+const trades_1 = require("./models/trades");
 const user_1 = require("./models/user");
-const rssfeed_1 = require("./models/rssfeed");
 let dbConnection = null;
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -22,8 +22,8 @@ function connect() {
             port: 3306,
             username: 'root',
             password: 'password',
-            database: 'rss-feed-db',
-            entities: [user_1.User, rssfeed_1.Rssfeed],
+            database: 'order-book-db',
+            entities: [user_1.User, trades_1.Trades],
             synchronize: true,
             logging: true,
         });

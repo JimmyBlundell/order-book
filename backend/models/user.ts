@@ -1,5 +1,5 @@
 import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import {Rssfeed} from "./rssfeed";
+import {Trades} from "./trades";
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
@@ -11,6 +11,6 @@ export class User {
     @Column()
     password: string;
 
-    @OneToMany(() => Rssfeed, rssFeed => rssFeed.user)
-    rssFeeds: Rssfeed[];
+    @OneToMany(() => Trades, trades => trades.user)
+    trades: Trades[];
 }
