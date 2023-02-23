@@ -31,11 +31,11 @@ __decorate([
     __metadata("design:type", Number)
 ], Trades.prototype, "price", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: false }),
     __metadata("design:type", Boolean)
-], Trades.prototype, "GTC", void 0);
+], Trades.prototype, "gtc", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Date)
 ], Trades.prototype, "expiration", void 0);
 __decorate([

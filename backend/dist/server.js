@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-// import UserRouter from "./routes/user";
-// import RssFeedRouter from "./routes/rssfeed";
+const user_1 = __importDefault(require("./routes/user"));
+const trades_1 = __importDefault(require("./routes/trades"));
 const express_session_1 = __importDefault(require("express-session"));
 require("reflect-metadata");
 const db_1 = require("./db");
@@ -35,8 +35,7 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     cookie: { expires: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) }
 }));
-// app.use("/", UserRouter, RssFeedRouter);
-// app.use("/");
+app.use("/", user_1.default, trades_1.default);
 const runApp = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, db_1.initDb)();
     app.listen(8000, () => {

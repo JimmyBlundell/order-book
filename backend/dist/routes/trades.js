@@ -1,8 +1,9 @@
 "use strict";
-// import { Router } from 'express';
-// import { addRssFeed, deleteRssFeed, getFeeds } from '../controllers/rssfeed';
-// const router = Router();
-// router.post('/addRssFeed', addRssFeed);
-// router.delete('/deleteRssFeed/:user/:url', deleteRssFeed);
-// router.get('/getFeeds/:user', getFeeds);
-// export default router;
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const trades_1 = require("../controllers/trades");
+const router = (0, express_1.Router)();
+router.post('/createTrade', trades_1.createTrade);
+router.get('/getTrades', trades_1.getTrades);
+router.get('/getFeeds/:user', trades_1.getUserTrades);
+exports.default = router;

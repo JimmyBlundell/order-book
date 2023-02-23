@@ -14,11 +14,11 @@ export class Trades {
     @Column()
     price: number;
 
-    @Column()
-    GTC: boolean;
+    @Column({default: false})
+    gtc: boolean;
 
-    @Column()
-    expiration: Date;
+    @Column({nullable: true})
+    expiration?: Date;
 
     @ManyToOne(() => User, user => user.trades)
     user: number;

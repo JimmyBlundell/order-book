@@ -1,10 +1,10 @@
-// import { Router } from 'express';
-// import { addRssFeed, deleteRssFeed, getFeeds } from '../controllers/rssfeed';
+import { Router } from 'express';
+import { createTrade, getUserTrades, getTrades } from '../controllers/trades';
 
-// const router = Router();
+const router = Router();
 
-// router.post('/addRssFeed', addRssFeed);
-// router.delete('/deleteRssFeed/:user/:url', deleteRssFeed);
-// router.get('/getFeeds/:user', getFeeds);
+router.post('/createTrade', createTrade);
+router.get('/getTrades', getTrades);
+router.get('/getFeeds/:user', getUserTrades);
 
-// export default router;
+export default router;

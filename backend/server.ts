@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors';
-// import UserRouter from "./routes/user";
-// import RssFeedRouter from "./routes/rssfeed";
+import UserRouter from "./routes/user";
+import TradesRouter from "./routes/trades";
 import session from "express-session";
 import 'reflect-metadata';
 import { initDb } from "./db";
@@ -26,8 +26,7 @@ app.use(
     })
 );
 
-// app.use("/", UserRouter, RssFeedRouter);
-// app.use("/");
+app.use("/", UserRouter, TradesRouter);
 
 const runApp = async () => {
     await initDb();
