@@ -39,7 +39,7 @@ const Login = () => {
             setLoginStatus(response?.data?.user?.username ?? "Something unknown occurred - uh oh.");
             setNeedsRegister(false);
         }).catch(err => {
-            alert(err.response.data);
+            alert(err?.response?.data);
         });
     };
 
@@ -51,7 +51,7 @@ const Login = () => {
             localStorage.setItem("userInfo", JSON.stringify(response?.data?.responseObject));
             window.location.href = "http://localhost:3000/";
         }).catch(err => {
-            alert(err.response.data);
+            alert(err?.response?.data);
         });
     };
 

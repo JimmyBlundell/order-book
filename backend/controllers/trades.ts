@@ -1,10 +1,10 @@
 import { getRepository } from 'typeorm';
 import { Trades } from '../models/trades';
 
-const tradeRepository = getRepository(Trades);
-
 // POST /orders
 export async function createTrade(req: any, res: any) {
+
+    const tradeRepository = getRepository(Trades);
 
     const { user, side, amount, price, gtc, expiration } = req.body;
 
@@ -45,6 +45,7 @@ export async function getUserTrades(req: any, res: any) {
 }
 
 export async function getTrades(req: any, res: any) {
+    const tradeRepository = getRepository(Trades);
     // get all trades
     try {
       const trades = await tradeRepository.find();

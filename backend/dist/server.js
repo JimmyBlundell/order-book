@@ -35,9 +35,10 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     cookie: { expires: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) }
 }));
-app.use("/", user_1.default, trades_1.default);
 const runApp = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, db_1.initDb)();
+    yield (0, db_1.initDb)().then(() => {
+        app.use("/", user_1.default, trades_1.default);
+    });
     app.listen(8000, () => {
         console.log("Server is running on port 8000");
     });

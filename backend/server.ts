@@ -26,10 +26,10 @@ app.use(
     })
 );
 
-app.use("/", UserRouter, TradesRouter);
-
 const runApp = async () => {
-    await initDb();
+    await initDb().then(() => {
+        app.use("/", UserRouter, TradesRouter);
+    });
     app.listen(8000, () => {
         console.log("Server is running on port 8000");
     });

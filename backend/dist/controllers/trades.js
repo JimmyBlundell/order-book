@@ -12,10 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTrades = exports.getUserTrades = exports.createTrade = void 0;
 const typeorm_1 = require("typeorm");
 const trades_1 = require("../models/trades");
-const tradeRepository = (0, typeorm_1.getRepository)(trades_1.Trades);
 // POST /orders
 function createTrade(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const tradeRepository = (0, typeorm_1.getRepository)(trades_1.Trades);
         const { user, side, amount, price, gtc, expiration } = req.body;
         // Create a new order object
         const newTrade = new trades_1.Trades();
@@ -56,6 +56,7 @@ function getUserTrades(req, res) {
 exports.getUserTrades = getUserTrades;
 function getTrades(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const tradeRepository = (0, typeorm_1.getRepository)(trades_1.Trades);
         // get all trades
         try {
             const trades = yield tradeRepository.find();
