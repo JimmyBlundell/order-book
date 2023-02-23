@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors';
-// import UserRouter from "./routes/user";
-// import RssFeedRouter from "./routes/rssfeed";
+import UserRouter from "./routes/user";
+import TradesRouter from "./routes/trades";
 import session from "express-session";
 import 'reflect-metadata';
 import { initDb } from "./db";
@@ -26,11 +26,10 @@ app.use(
     })
 );
 
-// app.use("/", UserRouter, RssFeedRouter);
-// app.use("/");
-
 const runApp = async () => {
-    await initDb();
+    await initDb().then(() => {
+        app.use("/", UserRouter, TradesRouter);
+    });
     app.listen(8000, () => {
         console.log("Server is running on port 8000");
     });
