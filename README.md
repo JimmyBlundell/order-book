@@ -15,9 +15,9 @@ It's a good idea to get the db set up first.
 
 ### Installing
 
-* Make sure yarn is installed on your machine.
-* Make sure SQL 
-* Navigate to rss-feed-reader/frontend/rss-feed
+* Make sure SQL and yarn are installed on your machine.
+* Use node version 16.15.0
+* Navigate to rss-feed-reader/frontend
   * For an all-in-one installation, run ``` npm run initialize ```
 * Otherwise
   * ``` npm install ``` in this folder
@@ -27,7 +27,6 @@ It's a good idea to get the db set up first.
 
 ### Executing program
 
-* Go to https://cors-anywhere.herokuapp.com/corsdemo and click 'Request temporary access to the demo server".
 * Ensure ports 8000 and 3000 are available on your machine (8000 will be backend, 3000 will be frontend)
 *  frontend/rss-feed then ``` npm start ```
   * This uses the concurrently package, so both the express server and react app will be started.

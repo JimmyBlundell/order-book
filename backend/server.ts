@@ -19,7 +19,7 @@ app.use(express.json());
 // Use express-session middleware
 app.use(
     session({
-        secret: "rssfeedreadersecret",
+        secret: "orderbook",
         resave: false,
         saveUninitialized: false,
         cookie: { expires: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) }
@@ -28,6 +28,7 @@ app.use(
 
 const runApp = async () => {
     await initDb().then(() => {
+        // routes need to be imported after db connection has been established with type ORM
         app.use("/", UserRouter, TradesRouter);
     });
     app.listen(8000, () => {
