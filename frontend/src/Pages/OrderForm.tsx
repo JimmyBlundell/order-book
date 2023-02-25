@@ -17,6 +17,15 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
     const [gtc, setGtc] = useState(false);
     const [expiration, setExpiration] = useState('');
 
+    const resetFields = () => {
+        setSide('buy');
+        setAmount('');
+        setAmountType('shares');
+        setPrice('');
+        setGtc(false);
+        setExpiration('');
+    }
+
     function handleSubmit(event: any) {
         event.preventDefault();
 
@@ -30,59 +39,11 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
 
         onAddTrade(trade);
 
-        // Reset form fields
-        setSide('buy');
-        setAmount('');
-        setAmountType('shares');
-        setPrice('');
-        setGtc(false);
-        setExpiration('');
+        resetFields();
+
     }
 
     return (
-        // <form onSubmit={handleSubmit} style={{ width: '50%', margin: '0 auto', textAlign: 'center' }}>
-        //     <label style={{ float: "left", display: 'block', margin: '1em 0' }}>
-        //         Side:
-        //         <select value={side} onChange={(e) => setSide(e.target.value)}>
-        //             <option value="buy">Buy</option>
-        //             <option value="sell">Sell</option>
-        //         </select>
-        //     </label>
-        //     <label style={{ display: 'block', margin: '1em 0' }}>
-        //         Amount:
-        //         <input
-        //             type="number"
-        //             value={amount}
-        //             onChange={(e) => setAmount((e.target.value))}
-        //             style={{ width: '100%' }}
-        //         />
-        //     </label>
-        //     <label style={{ display: 'block', margin: '1em 0' }}>
-        //         Price:
-        //         <input
-        //             type="number"
-        //             value={price}
-        //             onChange={(e) => setPrice((e.target.value))}
-        //             style={{ width: '100%' }}
-        //         />
-        //     </label>
-        //     <label style={{ float: "left", display: 'block', margin: '1em 0' }}>
-        //         Good 'til Canceled:
-        //         <input type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
-        //     </label>
-        //     {!gtc && (
-        //         <label style={{ display: 'block', margin: '1em 0' }}>
-        //             Expiration:
-        //             <input
-        //                 type="date"
-        //                 value={expiration}
-        //                 onChange={(e) => setExpiration(e.target.value)}
-        //                 style={{ width: '100%' }}
-        //             />
-        //         </label>
-        //     )}
-        //     <button type="submit">Submit</button>
-        // </form>
         <div className="App-header">
             <div className="card">
                 <h2>Create Order</h2>
@@ -105,17 +66,6 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                 <div className="input-group">
                     <input type="number" className="form" placeholder="Price" />
                 </div>
-                {/* <FormInput
-                    label="Price"
-                    type="number"
-                    required
-                    name="price"
-                    value={"a"}
-                    onChange={(e) => {
-                        console.log("e", e);
-                    }}
-                    id={'priceInput'}
-                /> */}
                 <label style={{ float: "left", display: 'block', margin: '1em 0' }}>
                     GTC:
                     <input type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
@@ -129,7 +79,7 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                         Submit
                     </Button>
                     &nbsp;
-                    <Button type="button" onClick={e => console.log("e", e)} size={'lg'}>
+                    <Button type="button" onClick={() => { resetFields() }} size={'lg'}>
                         Clear
                     </Button>
                 </div>
