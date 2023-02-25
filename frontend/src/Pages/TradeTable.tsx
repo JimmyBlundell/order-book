@@ -5,7 +5,7 @@ const TradeTable = (props: { trades: Trade[] }) => {
   const { trades } = props;
   console.log("trades in trades table component: ", trades);
   return (
-    <table>
+    <table className="trades-table">
       <thead>
         <tr>
           <th>Side</th>
@@ -18,7 +18,7 @@ const TradeTable = (props: { trades: Trade[] }) => {
       </thead>
       <tbody>
         {trades && trades.map((trade, i) => (
-          <tr key={i}>
+          <tr key={i} style={{ backgroundColor: i % 2 === 0 ? '#f2f2f2' : 'transparent' }}>
             <td>{trade.side}</td>
             <td>{trade.amount}</td>
             <td>{trade.amountType}</td>

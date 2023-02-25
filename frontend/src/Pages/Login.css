@@ -44,6 +44,30 @@ h2 {
     margin-top: 2rem;
 }
 
+.trades-table {
+    color: gray;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767px) {
+    .trade-table {
+        max-width: 100%;
+        font-size: 0.8em;
+    }
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
 .group {
     position: relative;
     margin: 25px 0;
