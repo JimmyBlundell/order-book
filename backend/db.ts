@@ -1,4 +1,4 @@
-import {createConnection, getConnection} from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 import { Trades } from './models/trades';
 import { User } from "./models/user"
 
@@ -20,6 +20,7 @@ async function connect() {
 export const initDb = async () => {
     dbConnection = await connect();
 }
+
 export default dbConnection;
 
 export async function close() {

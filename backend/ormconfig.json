@@ -5,6 +5,9 @@
   "database": "order-book-db",
   "username": "root",
   "password": "password",
-  "entities": ["backend/models/user.ts", "backend/models/trades.ts"],
+  "entities": [
+    "backend/models/user.ts",
+    "backend/models/trades.ts"
+  ],
   "synchronize": true
 }

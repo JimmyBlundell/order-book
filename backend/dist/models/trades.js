@@ -27,6 +27,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Trades.prototype, "amount", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: "shares" }),
+    __metadata("design:type", String)
+], Trades.prototype, "amountType", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Trades.prototype, "price", void 0);

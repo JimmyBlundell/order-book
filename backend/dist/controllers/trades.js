@@ -16,14 +16,15 @@ const trades_1 = require("../models/trades");
 function createTrade(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const tradeRepository = (0, typeorm_1.getRepository)(trades_1.Trades);
-        const { user, side, amount, price, gtc, expiration } = req.body;
+        const { user, side, amount, amountType, price, gtc, expiration } = req.body;
         // Create a new order object
         const newTrade = new trades_1.Trades();
+        newTrade.user = user;
         newTrade.side = side;
         newTrade.amount = amount;
+        newTrade.amountType = amountType;
         newTrade.price = price;
         newTrade.gtc = gtc;
-        newTrade.user = user;
         // Set expiration date if it exists
         if (expiration) {
             newTrade.expiration = new Date(expiration);
