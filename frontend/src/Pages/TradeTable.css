@@ -1,0 +1,26 @@
+.trade-table {
+    background-color: #282c34;
+    color: #cdcdcd;
+    border-collapse: collapse;
+    width: 70%;
+    margin: 20px auto;
+}
+
+.trade-table th,
+.trade-table td {
+    border: 1px solid #cdcdcd;
+    background-color: #282c34;
+    padding: 8px;
+    text-align: left;
+}
+
+.trade-table th {
+    background-color: #282c34;
+    color: #cdcdcd;
+}
+
+.trade-table th:hover {
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+}

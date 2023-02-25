@@ -106,6 +106,17 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                     GTC:
                     <input type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
                 </label>
+                {!gtc && (
+                    <label>
+                        Expiration:
+                        <input
+                            type="date"
+                            value={expiration}
+                            onChange={(e) => setExpiration(e.target.value)}
+                            style={{ width: '100%', marginBottom: "15px" }}
+                        />
+                    </label>
+                )}
                 <div className={'button-group'}>
                     <Button type="submit" size={'lg'} onClick={() => createOrder()}>
                         Submit

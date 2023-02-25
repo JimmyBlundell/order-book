@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Trades.prototype, "amountType", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Number)
 ], Trades.prototype, "price", void 0);
 __decorate([

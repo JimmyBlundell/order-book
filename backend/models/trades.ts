@@ -14,7 +14,7 @@ export class Trades {
     @Column({ default: "shares" })
     amountType: string;
 
-    @Column()
+    @Column({ nullable: true })
     price: number;
 
     @Column({ default: false })

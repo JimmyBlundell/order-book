@@ -41,7 +41,7 @@ const OrderBook = () => {
 
   return (
     <div>
-      <h1 style={{ width: "fit-content", marginLeft: "auto", marginRight: "auto" }}>Order Book</h1>
+      <h1 style={{ width: "fit-content", marginLeft: "auto", marginRight: "auto", color: "#cdcdcd" }}>Order Book</h1>
       <TradeTable trades={trades} />
       <OrderForm onAddTrade={handleAddTrade} />
     </div>
