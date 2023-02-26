@@ -23,6 +23,8 @@ const TradeTable = ({ trades }: TradeTableProps) => {
       Header: 'Amount Type',
       accessor: 'amountType'
     },
+    // is this necessary if a user is only bidding via amoutn in dollars? is this only for sellers or 
+    // when bidding on an amount of shares?
     {
       Header: 'Price/Share',
       accessor: 'price'
