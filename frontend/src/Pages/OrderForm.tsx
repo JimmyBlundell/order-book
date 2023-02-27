@@ -45,8 +45,8 @@ const OrderForm = () => {
             price: parseInt(price),
             gtc: gtc,
             expiration: expiration
-        }).then((response) => {
-            console.log("response from create order: ", response?.data);
+        }).then(() => {
+            alert("Successfully submitted your order!")
             resetFields();
         }).catch((err) => {
             alert(err?.response?.data);
@@ -58,7 +58,7 @@ const OrderForm = () => {
         return (
             <Modal
                 {...props}
-                size="lg"
+                size="sm"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -149,7 +149,7 @@ const OrderForm = () => {
                 </div>
                 <label style={{ float: 'left', display: 'block', margin: '1em 0' }}>
                     GTC:
-                    <input style={{ marginLeft: "8px" }} type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
+                    <input style={{ marginLeft: "8px" }} type="checkbox" checked={gtc} onChange={(e) => { setGtc(e.target.checked); setExpiration(''); }} />
                 </label>
                 {!gtc && (
                     <label>
