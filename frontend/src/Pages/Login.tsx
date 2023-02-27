@@ -38,9 +38,10 @@ const Login = () => {
       .then((response) => {
         setLoginStatus(
           response?.data?.user?.username ??
-            'Something unknown occurred - uh oh.'
+          'Something unknown occurred - uh oh.'
         );
         setNeedsRegister(false);
+        alert(`Successfully registered ${usernameReg}`)
       })
       .catch((err) => {
         alert(err?.response?.data);
