@@ -11,13 +11,16 @@ export class Trades {
     @Column()
     amount: number;
 
-    @Column()
+    @Column({ default: "shares" })
+    amountType: string;
+
+    @Column({ nullable: true })
     price: number;
 
-    @Column({default: false})
+    @Column({ default: false })
     gtc: boolean;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     expiration?: Date;
 
     @ManyToOne(() => User, user => user.trades)

@@ -15,9 +15,9 @@ It's a good idea to get the db set up first.
 
 ### Installing
 
-* Make sure yarn is installed on your machine.
-* Make sure SQL 
-* Navigate to rss-feed-reader/frontend/rss-feed
+* Make sure SQL and yarn are installed on your machine.
+* Use node version 16.15.0
+* Navigate to rss-feed-reader/frontend
   * For an all-in-one installation, run ``` npm run initialize ```
 * Otherwise
   * ``` npm install ``` in this folder
