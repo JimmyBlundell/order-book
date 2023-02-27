@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useState } from 'react';
-import { Trade } from './OrderBook';
-import FormInput from '../components/form-input/form-input';
+import ConfirmationModal from "../components/Modal";
 import { Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Axios from 'axios';
 import './Login.css';
 
 const OrderForm = () => {
+    const [showModal, setShowModal] = useState(false);
     const user = JSON.parse(localStorage.getItem('userInfo') as string);
     const [side, setSide] = useState('buy');
     const [amount, setAmount] = useState('');
@@ -14,6 +15,16 @@ const OrderForm = () => {
     const [price, setPrice] = useState('');
     const [gtc, setGtc] = useState(false);
     const [expiration, setExpiration] = useState('');
+
+    // Keep track of new order to display in confirmation modal
+    const newOrder = {
+        side: side,
+        amount: amount,
+        amountType: amountType,
+        price: price,
+        gtc: gtc,
+        expiration: expiration
+    };
 
     const orderValidation = (user && side && amount && amountType && price && (gtc || expiration)) ? true : false;
 
@@ -40,8 +51,61 @@ const OrderForm = () => {
             resetFields();
         }).catch((err) => {
             alert(err?.response?.data);
-        })
+        });
+        setShowModal(false);
     };
+
+    function ConfirmationModal(props: any) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Submit Order Confirmation
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>Please review your order</h4>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Side:</td>
+                                <td>{side}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount:</td>
+                                <td>{amount}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount Type:</td>
+                                <td>{amountType}</td>
+                            </tr>
+                            <tr>
+                                <td>Price/Share:</td>
+                                <td>{price}</td>
+                            </tr>
+                            <tr>
+                                <td>GTC:</td>
+                                <td>{gtc ? 'Yes' : 'No'}</td>
+                            </tr>
+                            <tr>
+                                <td>Expiration:</td>
+                                <td>{expiration ? new Date(expiration).toLocaleString() : '-'}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => { createOrder(); setShowModal(false); }}>Submit</Button>
+                    <Button onClick={() => setShowModal(false)}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    }
 
     return (
         <div className="App-header">
@@ -100,7 +164,7 @@ const OrderForm = () => {
                     </label>
                 )}
                 <div className={'button-group'}>
-                    <Button type="submit" size={'lg'} disabled={!orderValidation} onClick={() => { createOrder() }}>
+                    <Button type="submit" size={'lg'} disabled={!orderValidation} onClick={() => setShowModal(true)}>
                         Submit
                     </Button>
                     &nbsp;
@@ -109,7 +173,8 @@ const OrderForm = () => {
                     </Button>
                 </div>
             </div>
-        </div>
+            <ConfirmationModal show={showModal} />
+        </div >
     );
 };
 
