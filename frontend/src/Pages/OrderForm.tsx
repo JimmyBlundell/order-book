@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useState } from 'react';
-import ConfirmationModal from "../components/Modal";
 import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import Axios from 'axios';
