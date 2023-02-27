@@ -6,11 +6,7 @@ import { Button } from 'react-bootstrap';
 import Axios from 'axios';
 import './Login.css';
 
-type OrderFormProps = {
-    onAddTrade: (trade: Trade) => void;
-};
-
-const OrderForm = ({ onAddTrade }: OrderFormProps) => {
+const OrderForm = () => {
     const user = JSON.parse(localStorage.getItem('userInfo') as string);
     const [side, setSide] = useState('buy');
     const [amount, setAmount] = useState('');
@@ -18,6 +14,8 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
     const [price, setPrice] = useState('');
     const [gtc, setGtc] = useState(false);
     const [expiration, setExpiration] = useState('');
+
+    const orderValidation = (user && side && amount && amountType && price && (gtc || expiration)) ? true : false;
 
     const resetFields = () => {
         setSide('buy');
@@ -45,24 +43,6 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
         })
     };
 
-
-
-    // const handleSubmit = (event: { preventDefault: () => void; }) => {
-    //     event.preventDefault();
-
-    //     const trade = {
-    //         side,
-    //         amount: amountType === 'shares' ? parseInt(amount) : parseFloat(amount),
-    //         price: parseFloat(price),
-    //         gtc,
-    //         expiration: gtc ? null : expiration,
-    //     };
-
-    //     onAddTrade(trade);
-
-    //     resetFields();
-    // };
-
     return (
         <div className="App-header">
             <div className="card">
@@ -85,7 +65,8 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                     <div className="input-group-append">
                         <select
                             className="form-control"
-                            value={amountType}
+                            value={side === "sell" ? "shares" : amountType}
+                            disabled={side === "sell"}
                             onChange={(e) => setAmountType(e.target.value)}
                         >
                             <option value="dollars">Dollars</option>
@@ -93,18 +74,19 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                         </select>
                     </div>
                 </div>
+
                 <div className="input-group">
                     <input
                         type="number"
                         className="form"
-                        placeholder="Price"
+                        placeholder="Price/Share"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>
                 <label style={{ float: 'left', display: 'block', margin: '1em 0' }}>
                     GTC:
-                    <input type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
+                    <input style={{ marginLeft: "8px" }} type="checkbox" checked={gtc} onChange={(e) => setGtc(e.target.checked)} />
                 </label>
                 {!gtc && (
                     <label>
@@ -118,7 +100,7 @@ const OrderForm = ({ onAddTrade }: OrderFormProps) => {
                     </label>
                 )}
                 <div className={'button-group'}>
-                    <Button type="submit" size={'lg'} onClick={() => createOrder()}>
+                    <Button type="submit" size={'lg'} disabled={!orderValidation} onClick={() => { createOrder() }}>
                         Submit
                     </Button>
                     &nbsp;

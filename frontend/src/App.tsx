@@ -8,8 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Login from './Pages/Login';
-import Home from './Pages/Home';
 import OrderBook from './Pages/OrderBook';
+import OrderForm from './Pages/OrderForm';
 import ErrorPage from './Pages/ErrorPage';
 import Axios from 'axios';
 import { NavDropdown } from 'react-bootstrap';
@@ -58,7 +58,7 @@ const App = () => {
         )}
       </Navbar>
       <Routes>
-        <Route path={'/'} element={<Home />} />
+        <Route path={'/'} element={<OrderForm />} />
         <Route path={'/order-book'} element={<OrderBook />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'*'} element={<ErrorPage />} />

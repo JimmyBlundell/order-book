@@ -1,0 +1,46 @@
+.order-book-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.header-buy {
+    text-align: center;
+    color: palevioletred
+}
+
+.header-sell {
+    text-align: center;
+    color: lightgreen;
+}
+
+.trade-table {
+    margin: 0.5rem;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+.trade-table th {
+    background-color: #282c34;
+    border-bottom: 3px solid gray;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.trade-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.trade-table .sorted-desc {
+    color: palevioletred;
+}
+
+.trade-table .sorted-asc {
+    color: lightgreen;
+}

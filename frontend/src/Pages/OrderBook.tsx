@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import TradeTable from './TradeTable';
-import OrderForm from './OrderForm';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './OrderBook.css';
+import TradeTable from './TradeTable';
 
 export interface Trade {
-  side: string;
+  id: number;
+  side: 'buy' | 'sell';
   amount: number;
-  amountType: string;
+  amountType: 'USD' | 'ETH';
   price: number;
   gtc: boolean;
-  expiration: Date | any;
+  expiration?: Date;
 }
 
 const OrderBook = () => {
+
   const userInfo = JSON.parse(localStorage.getItem('userInfo') as string);
   const userId = userInfo?.id;
   const [trades, setTrades] = useState<Trade[]>([]);
@@ -35,15 +37,27 @@ const OrderBook = () => {
     fetchData().then(() => console.log("Fetched trades on page load"));
   }, []);
 
-  function handleAddTrade(trade: Trade) {
-    setTrades([...trades, trade]);
-  }
+  const buyOrders = trades.filter((trade) => trade.side === 'buy');
+  const sellOrders = trades.filter((trade) => trade.side === 'sell');
+
+  const sortedBuyOrders = React.useMemo(() => {
+    return buyOrders.sort((a, b) => b.price - a.price);
+  }, [buyOrders]);
+
+  const sortedSellOrders = React.useMemo(() => {
+    return sellOrders.sort((a, b) => a.price - b.price);
+  }, [sellOrders]);
 
   return (
-    <div>
-      <h1 style={{ width: "fit-content", marginLeft: "auto", marginRight: "auto", color: "#cdcdcd" }}>Order Book</h1>
-      <TradeTable trades={trades} />
-      <OrderForm onAddTrade={handleAddTrade} />
+    <div className="order-book-container">
+      <div className="buy-orders">
+        <h2 className={"header-buy"}>Buy Orders</h2>
+        <TradeTable trades={sortedBuyOrders} isBuySide={true} />
+      </div>
+      <div className="sell-orders">
+        <h2 className={"header-sell"}>Sell Orders</h2>
+        <TradeTable trades={sortedSellOrders} isBuySide={false} />
+      </div>
     </div>
   );
 };
